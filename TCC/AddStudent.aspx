@@ -11,10 +11,17 @@
     <form id="form2" runat="server">
     <div style="margin:0 0 auto; margin-left: 400px; margin-top: 5px; width: 500px; padding-top:5px; background-image:url('images/2.jpg')">
          
-            <br />
-            <asp:Button ID="btnBack" runat="server" Text="Back" ForeColor="White" BorderStyle="None" BackColor="#02091B" Font-Size="Large" OnClientClick="JavaScript: window.history.back(1); return false;" CausesValidation="false" />
-            <br />
-         
+            <table>
+                <tr>
+                    <td>
+                        <asp:Button ID="btnBack" runat="server" Text="Back" ForeColor="White" BorderStyle="None" BackColor="#02091B" Font-Size="Large" OnClientClick="JavaScript: window.history.back(1); return false;" CausesValidation="false" />
+                    </td>
+                    <td>
+                          <asp:Button ID="btnAddFromFile" runat="server" Text="Add from file" ForeColor="White" BorderStyle="None" BackColor="#02091B" Font-Size="Large" OnClick="btnAddFromFile_Click" CausesValidation="false" />
+                    </td>
+                </tr>
+            </table>
+
             <table style="margin-left:85px;">
 
                 <tr>

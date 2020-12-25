@@ -11,7 +11,7 @@ namespace TCC.DAL
     public class DataAccessLayer
     {
         string conStr;
-        SqlConnection SqlConnection;
+        public SqlConnection SqlConnection;
         public DataAccessLayer()
         {
             conStr = ConfigurationManager.ConnectionStrings["tccCon"].ConnectionString;

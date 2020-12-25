@@ -28,5 +28,10 @@ namespace TCC
             DAL.Close();
            Response.Redirect("StudentManagement.aspx");
         }
+
+        protected void btnAddFromFile_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/AddCSV.aspx");
+        }
     }
 }

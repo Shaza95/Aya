@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddCSV.aspx" />
     <Content Include="AddStudent.aspx" />
     <Content Include="AddSubject.aspx" />
     <Content Include="Design\css\StyleSheet1.css" />
@@ -102,6 +103,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCSV.aspx.cs">
+      <DependentUpon>AddCSV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddCSV.aspx.designer.cs">
+      <DependentUpon>AddCSV.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddStudent.aspx.cs">
       <DependentUpon>AddStudent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
