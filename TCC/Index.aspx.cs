@@ -21,7 +21,7 @@ namespace TCC
 
         protected void btnVisitor_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/StudentDashboard.aspx");
+            Response.Redirect("~/Subjects.aspx");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

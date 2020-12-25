@@ -45,14 +45,17 @@ namespace TCC
             tblcsv.Columns.Add("Father");
             tblcsv.Columns.Add("Nick");
             tblcsv.Columns.Add("Mother");
-            tblcsv.Columns.Add("DeptId");
+            tblcsv.Columns.Add("DeptId", typeof(Int32));
             tblcsv.Columns.Add("Year");
-            tblcsv.Columns.Add("BirthDate");
+            tblcsv.Columns.Add("BirthDate", typeof(DateTime));
             tblcsv.Columns.Add("Phone");
             tblcsv.Columns.Add("Email");
             tblcsv.Columns.Add("Password");
-            string CSVFilePath = Path.GetFullPath(FileUpload1.PostedFile.FileName);
+            string fileName = FileUpload1.PostedFile.FileName;
+            string CSVFilePath = Server.MapPath("Files/" + fileName);
+            FileUpload1.SaveAs(CSVFilePath);
             string ReadCSV = File.ReadAllText(CSVFilePath);
+            int rowsCount = 0;
             foreach (string csvRow in ReadCSV.Split('\n'))
             {
                 if (!string.IsNullOrEmpty(csvRow))
@@ -64,6 +67,7 @@ namespace TCC
                         tblcsv.Rows[tblcsv.Rows.Count - 1][count] = FileRec;
                         count++;
                     }
+                    rowsCount++;
                 }
             }
             InsertCSVRecords(tblcsv);
