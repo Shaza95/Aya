@@ -68,7 +68,7 @@ namespace TCC
                 LiteralControl l = new LiteralControl();
                 l.Text = "<br>";
                 newPost.Controls.Add(l);
-                cmd = $"select Body, UserName from (select Body, CONCAT(Name, Nick) As UserName, Date from Comments join Users on Comments.UserId = Users.Id where Comments.PostId = {int.Parse(post["Id"].ToString())})t order by t.Date  desc";
+                cmd = $"select Body, UserName, Date from (select Body, CONCAT(Name, ' ', Nick) As UserName, Date from Comments join Users on Comments.UserId = Users.Id where Comments.PostId = {int.Parse(post["Id"].ToString())})t order by t.Date  desc";
                 DataTable commentsDT = DAL.SelectData(cmd);
                 foreach (DataRow com in commentsDT.Rows)
                 {
@@ -77,11 +77,28 @@ namespace TCC
                     HtmlGenericControl nme = new HtmlGenericControl("p");
                     nme.Attributes.Add("class", "commentName");
                     nme.InnerHtml = com["UserName"] + " : ";
+                    HtmlGenericControl dte = new HtmlGenericControl("p");
+                    dte.Attributes.Add("class", "commentDate");
+                    dte.InnerHtml = com["Date"].ToString();
                     HtmlGenericControl comTxt = new HtmlGenericControl("p");
                     comTxt.Attributes.Add("class", "commentText");
                     comTxt.InnerHtml = com["Body"] + "<br>";
                     commentDiv.Controls.Add(nme);
+                    commentDiv.Controls.Add(dte);
                     commentDiv.Controls.Add(comTxt);
+                    if (com["UserName"].ToString() == Session["UserName"].ToString())
+                    {
+                        LinkButton lbEdit = new LinkButton();
+                        LinkButton lbDelete = new LinkButton();
+                        lbEdit.Attributes.Add("class", "commentLnk");
+                        lbEdit.Text = "edit";
+                        lbEdit.Command += new CommandEventHandler(edit_Click);
+                        lbDelete.Attributes.Add("class", "commentLnk");
+                        lbDelete.Text = "delete";
+                        lbDelete.Command += new CommandEventHandler(delete_Click);
+                        commentDiv.Controls.Add(lbEdit);
+                        commentDiv.Controls.Add(lbDelete);
+                    }
                     newPost.Controls.Add(commentDiv);
                 }
                 posts.Add(newPost);
@@ -106,6 +123,14 @@ namespace TCC
             DAL.ExecuteCommand(cmd);
             DAL.Close();
             Response.Redirect(Request.RawUrl);
+        }
+        protected void edit_Click(object sender, CommandEventArgs e)
+        {
+
+        }
+        protected void delete_Click(object sender, CommandEventArgs e)
+        {
+
         }
     }
 }

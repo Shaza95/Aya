@@ -52,23 +52,23 @@ namespace TCC
                     newPost.Controls.Add(img);
                     newPost.Controls.Add(new LiteralControl("<br/>"));
                 }
-                TextBox tb = new TextBox();
-                tb.Attributes.Add("class", "commentTB");
-                tb.MaxLength = 150;
-                tb.ID = "tb" + post["Id"].ToString();
-                newPost.Controls.Add(tb);
-                Button btn = new Button();
-                btn.Attributes.Add("class", "commentBtn");
-                btn.Text = "comment";
-                btn.Command += new CommandEventHandler(comment_Click);
+                //TextBox tb = new TextBox();
+                //tb.Attributes.Add("class", "commentTB");
+                //tb.MaxLength = 150;
+                //tb.ID = "tb" + post["Id"].ToString();
+                //newPost.Controls.Add(tb);
+                //Button btn = new Button();
+                //btn.Attributes.Add("class", "commentBtn");
+                //btn.Text = "comment";
+                //btn.Command += new CommandEventHandler(comment_Click);
                 int postId = (int)post["Id"];
                 int UserId = int.Parse(Session["UserId"].ToString());
-                btn.CommandArgument = post["Id"].ToString() + ';' + UserId.ToString();
-                newPost.Controls.Add(btn);
+                //btn.CommandArgument = post["Id"].ToString() + ';' + UserId.ToString();
+                //newPost.Controls.Add(btn);
                 LiteralControl l = new LiteralControl();
                 l.Text = "<br>";
                 newPost.Controls.Add(l);
-                cmd = $"select Body, UserName from (select Body, CONCAT(Name, Nick) As UserName, Date from Comments join Users on Comments.UserId = Users.Id where Comments.PostId = {int.Parse(post["Id"].ToString())})t order by t.Date  desc";
+                cmd = $"select Body, UserName, Date from (select Body, CONCAT(Name, ' ', Nick) As UserName, Date from Comments join Users on Comments.UserId = Users.Id where Comments.PostId = {int.Parse(post["Id"].ToString())})t order by t.Date  desc";
                 DataTable commentsDT = DAL.SelectData(cmd);
                 foreach (DataRow com in commentsDT.Rows)
                 {
@@ -77,10 +77,14 @@ namespace TCC
                     HtmlGenericControl nme = new HtmlGenericControl("p");
                     nme.Attributes.Add("class", "commentName");
                     nme.InnerHtml = com["UserName"] + " : ";
+                    HtmlGenericControl dte = new HtmlGenericControl("p");
+                    dte.Attributes.Add("class", "commentDate");
+                    dte.InnerHtml = com["Date"].ToString();
                     HtmlGenericControl comTxt = new HtmlGenericControl("p");
                     comTxt.Attributes.Add("class", "commentText");
                     comTxt.InnerHtml = com["Body"] + "<br>";
                     commentDiv.Controls.Add(nme);
+                    commentDiv.Controls.Add(dte);
                     commentDiv.Controls.Add(comTxt);
                     newPost.Controls.Add(commentDiv);
                 }

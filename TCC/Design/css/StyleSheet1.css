@@ -40,6 +40,15 @@
     font-size: large;
 }
 
+.commentLnk {
+    height: 50px;
+    width: 100px;
+    color: red;
+    font-size: medium;
+    text-decoration: underline;
+    margin-right: 50px;
+}
+
 .commentDiv{
     border: 1px solid lightyellow;
     padding: 10px;
@@ -49,6 +58,12 @@
 .commentName{
     font-size: large;
     color: steelblue;
+}
+
+.commentDate {
+    font-size: medium;
+    color: steelblue;
+    float: right;
 }
 
 .commentText{
