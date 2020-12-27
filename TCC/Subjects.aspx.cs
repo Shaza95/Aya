@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using TCC.DAL;
 
 namespace TCC
 {
@@ -14,6 +15,8 @@ namespace TCC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            DataAccessLayer DAL = new DataAccessLayer();
+            string cmd = $"SELECT Subjects.[Id], Subjects.[Name], [Year], [Description], TeacherName FROM Subjects WHERE Subjects.DeptId = {Session["DeptId"]}";
         }
     }
 }

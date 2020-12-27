@@ -21,7 +21,7 @@ namespace TCC
 
         protected void btnVisitor_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Subjects.aspx");
+            Response.Redirect("~/Visitor.aspx");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -39,6 +39,7 @@ namespace TCC
                 }
                 else
                 {
+                    Session["DeptId"] = int.Parse(users.Rows[0]["DeptId"].ToString());
                     Response.Redirect("StudentDashboard.aspx");
                 }
             }

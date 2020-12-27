@@ -100,6 +100,7 @@
     <Content Include="StudentManagement.aspx" />
     <Content Include="SubjectManagement.aspx" />
     <Content Include="PostManagement.aspx" />
+    <Content Include="Visitor.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +196,13 @@
     </Compile>
     <Compile Include="PostManagement.aspx.designer.cs">
       <DependentUpon>PostManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Visitor.aspx.cs">
+      <DependentUpon>Visitor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Visitor.aspx.designer.cs">
+      <DependentUpon>Visitor.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

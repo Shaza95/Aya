@@ -25,7 +25,7 @@
             <Columns>
                 <asp:BoundField DataField="Name" HeaderText="Name"/>
                 <asp:BoundField DataField="Year" HeaderText="Year"/>
-                <asp:BoundField DataField="Dept" HeaderText="Department"/>
+                <%--<asp:BoundField DataField="Dept" HeaderText="Department"/>--%>
                 <asp:BoundField DataField="Description" HeaderText="Description"/>
                 <asp:BoundField DataField="TeacherName" HeaderText="Teacher"/>
             </Columns>
