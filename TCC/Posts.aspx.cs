@@ -68,7 +68,7 @@ namespace TCC
                 LiteralControl l = new LiteralControl();
                 l.Text = "<br>";
                 newPost.Controls.Add(l);
-                cmd = $"select Body, UserName, Date from (select Body, CONCAT(Name, ' ', Nick) As UserName, Date from Comments join Users on Comments.UserId = Users.Id where Comments.PostId = {int.Parse(post["Id"].ToString())})t order by t.Date  desc";
+                cmd = $"select Body, UserName, Date, Id from (select Body, CONCAT(Name, ' ', Nick) As UserName, Date, Comments.Id from Comments join Users on Comments.UserId = Users.Id where Comments.PostId = {int.Parse(post["Id"].ToString())})t order by t.Date  desc";
                 DataTable commentsDT = DAL.SelectData(cmd);
                 foreach (DataRow com in commentsDT.Rows)
                 {
@@ -96,6 +96,7 @@ namespace TCC
                         lbDelete.Attributes.Add("class", "commentLnk");
                         lbDelete.Text = "delete";
                         lbDelete.Command += new CommandEventHandler(delete_Click);
+                        lbDelete.CommandArgument = com["Id"].ToString();
                         commentDiv.Controls.Add(lbEdit);
                         commentDiv.Controls.Add(lbDelete);
                     }
@@ -130,7 +131,13 @@ namespace TCC
         }
         protected void delete_Click(object sender, CommandEventArgs e)
         {
-
+            int commentId = int.Parse(e.CommandArgument.ToString());
+            string cmd = $"delete from Comments where Id = {commentId}";
+            DataAccessLayer DAL = new DataAccessLayer();
+            DAL.Open();
+            DAL.ExecuteCommand(cmd);
+            DAL.Close();
+            Response.Redirect(Request.RawUrl);
         }
     }
 }
