@@ -61,10 +61,16 @@ namespace TCC
                 btn.Attributes.Add("class", "commentBtn");
                 btn.Text = "comment";
                 btn.Command += new CommandEventHandler(comment_Click);
+                Button btnSave = new Button();
+                btnSave.Attributes.Add("class", "commentBtn");
+                btnSave.Text = "save";
+                btnSave.Command += new CommandEventHandler(save_Click);
                 int postId = (int)post["Id"];
                 int UserId = int.Parse(Session["UserId"].ToString());
                 btn.CommandArgument = post["Id"].ToString() + ';' + UserId.ToString();
+                btnSave.CommandArgument = post["Id"].ToString() + ';' + UserId.ToString();
                 newPost.Controls.Add(btn);
+                newPost.Controls.Add(btnSave);
                 LiteralControl l = new LiteralControl();
                 l.Text = "<br>";
                 newPost.Controls.Add(l);
@@ -124,6 +130,20 @@ namespace TCC
             DAL.ExecuteCommand(cmd);
             DAL.Close();
             Response.Redirect(Request.RawUrl);
+        }
+        protected void save_Click(object sender, CommandEventArgs e)
+        {
+            string info = e.CommandArgument.ToString();
+            string[] arg = new string[2];
+            char[] splitter = { ';' };
+            arg = info.Split(splitter);
+            int postId = int.Parse(arg[0]);
+            int UserId = int.Parse(arg[1]);
+            string cmd = $"insert into SavedPosts (PostId, UserId) values ('{postId}', '{UserId}')";
+            DataAccessLayer DAL = new DataAccessLayer();
+            DAL.Open();
+            DAL.ExecuteCommand(cmd);
+            DAL.Close();
         }
         protected void edit_Click(object sender, CommandEventArgs e)
         {
