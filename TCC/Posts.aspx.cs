@@ -17,6 +17,10 @@ namespace TCC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null)
+            {
+                Response.Redirect("~/index.aspx");
+            }
             List<HtmlGenericControl> posts = new List<HtmlGenericControl>();
             string cmd = "select Id, Body, Date, image, fileName from Posts order by Date desc";
             DataAccessLayer DAL = new DataAccessLayer();

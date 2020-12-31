@@ -15,12 +15,14 @@
         </label>
         <asp:Button ID="btnLogout" runat="server" Text="Sign Out" BackColor="#02091B" ForeColor="White" Font-Size="20px" Width="100px" Height="50px" BorderStyle="Groove" OnClick="btnLogout_Click"/>
         </div>
-        <div style="height:250px; background-image:url('images/9.jpg');  padding:60px">
+        <div style="height:250px; background-image:url('images/5.jpg');  padding:60px">
             <table>
                 <tr>
                     <td style="margin:100px">
                         <asp:Button ID="btnStudentManagment" runat="server" Text="Students management" BackColor="White" ForeColor="#02091B" Font-Size="12px" Width="170px" Height="50px" OnClick="btnStudentManagment_Click"/>
                     </td>
+                </tr>
+                <tr>
                     <td style="margin:100px">
                         <asp:Button ID="btnSubjectManagement" runat="server" Text="Subjects management" BackColor="white" ForeColor="#02091B" Font-Size="12px" Width="170px" Height="50px" onclick="btnSubjectManagement_Click"/>
                     </td>

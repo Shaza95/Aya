@@ -15,6 +15,10 @@ namespace TCC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null)
+            {
+                Response.Redirect("~/index.aspx");
+            }
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)

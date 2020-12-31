@@ -15,6 +15,10 @@ namespace TCC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null)
+            {
+                Response.Redirect("~/index.aspx");
+            }
             DataAccessLayer DAL = new DataAccessLayer();
             string cmd = $"SELECT Subjects.[Id], Subjects.[Name], [Year], [Description], TeacherName FROM Subjects WHERE Subjects.DeptId = {Session["DeptId"]}";
         }

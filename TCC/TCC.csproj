@@ -72,6 +72,7 @@
     <Content Include="AddSubject.aspx" />
     <Content Include="Design\css\StyleSheet1.css" />
     <Content Include="downloading.aspx" />
+    <Content Include="Images\5.jpg" />
     <Content Include="Posts.aspx" />
     <Content Include="Subjects.aspx" />
     <Content Include="Design\css\bootstrap-grid.css" />

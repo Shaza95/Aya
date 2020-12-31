@@ -15,7 +15,7 @@
         </label>
         <asp:Button ID="Button1" runat="server" Text="Sign Out" BackColor="#02091B" ForeColor="White" Font-Size="20px" Width="100px" Height="50px" BorderStyle="Groove" OnClick="btnLogout_Click"/>
         </div>
-        <div style="height:250px; background-image:url('images/9.jpg');  padding:60px">
+        <div style="height:250px; background-image:url('images/5.jpg');  padding:60px">
             <table>
                 <tr>
                     <td style="margin:100px; padding:25px">

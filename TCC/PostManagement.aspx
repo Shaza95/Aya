@@ -10,6 +10,7 @@
             height: 100px;
             width: 265px;
         }
+
         #File1 {
             width: 203px;
         }
@@ -17,26 +18,26 @@
     <link href="Design\css\StyleSheet1.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body style="background-color:darkslategray; padding-left: 220px; padding-right:220px;">
+<body style="background-color: darkslategray; padding-left: 220px; padding-right: 220px;">
     <form id="form1" runat="server">
-    <div style="height: 300px">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Welcome<br />
+        <div style="background-color: darkcyan; padding: 50px">
+            <br />
+            <br />
+            Add Post:<br />
+            <asp:TextBox runat="server" ID="TextArea1" TextMode="Multiline" Columns="20" Name="S1" Rows="4"></asp:TextBox>
+            <br />
+            &nbsp; add file:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:FileUpload ID="FileUpload1" runat="server" Width="82px" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <br />
-        <br />
-        Add Post:<br />
-        <asp:TextBox runat="server" ID="TextArea1" TextMode="Multiline" Columns="20" Name="S1" Rows="4"></asp:TextBox>
-        <br />
-&nbsp; add file:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:FileUpload ID="FileUpload1"  runat="server" Width="82px" />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <br />
-&nbsp; add image:&nbsp;
+            &nbsp; add image:&nbsp;
         <asp:FileUpload ID="FileUpload2" runat="server" Width="80px" />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnSubmit" runat="server" Text="post" onclick="addPost" Height="24px" />
-        <br />
-        <br />
-        &nbsp;&nbsp;&nbsp;</div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnSubmit" runat="server" Text="post" CssClass="commentBtn" OnClick="addPost" />
+            <br />
+            <br />
+            &nbsp;&nbsp;&nbsp;
+        </div>
 
         <div id="main" runat="server">
         </div>
