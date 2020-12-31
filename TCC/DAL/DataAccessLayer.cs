@@ -48,5 +48,11 @@ namespace TCC.DAL
             SqlCommand sqlcmd = new SqlCommand(Query, SqlConnection);
             return sqlcmd.ExecuteNonQuery();
         }
+
+        public int ExecuteScalar(string Query)
+        {
+            SqlCommand sqlcmd = new SqlCommand(Query, SqlConnection);
+            return (int)sqlcmd.ExecuteScalar();
+        }
     }
 }

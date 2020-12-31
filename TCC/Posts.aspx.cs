@@ -139,10 +139,26 @@ namespace TCC
             arg = info.Split(splitter);
             int postId = int.Parse(arg[0]);
             int UserId = int.Parse(arg[1]);
-            string cmd = $"insert into SavedPosts (PostId, UserId) values ('{postId}', '{UserId}')";
             DataAccessLayer DAL = new DataAccessLayer();
             DAL.Open();
-            DAL.ExecuteCommand(cmd);
+            int SavedPostsNum = DAL.ExecuteScalar($"select count(PostId) from SavedPosts where UserId = {UserId}");
+            if (SavedPostsNum < 10)
+            {
+                bool SavedBefore = DAL.ExecuteScalar($"select count(PostId) from SavedPosts where UserId = {UserId} and PostId = {postId}") == 0;
+                if (!SavedBefore)
+                {
+                    string cmd = $"insert into SavedPosts (PostId, UserId) values ({postId}, {UserId})";
+                    DAL.ExecuteCommand(cmd);
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<script language='javascript'>alert('You have saved this post before')</script>");
+                }
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<script language='javascript'>alert('You cannot save more than 10 posts')</script>");
+            }
             DAL.Close();
         }
         protected void edit_Click(object sender, CommandEventArgs e)
