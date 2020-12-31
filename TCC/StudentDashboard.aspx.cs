@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.IO;
+using TCC.DAL;
 
 namespace TCC
 {
@@ -39,9 +40,19 @@ namespace TCC
         {
             string fileName = "MySavedPosts.txt";
             string filePath = Server.MapPath("Files/" + fileName);
+            string cmd = $"select Body, Date from Posts join SavedPosts on Posts.Id = SavedPosts.PostId where SavedPosts.UserId = {int.Parse(Session["UserId"].ToString())} order by Date Desc";
             using (StreamWriter outputFile = new StreamWriter(filePath))
             {
-                outputFile.WriteLine("123");
+                DataAccessLayer DAL = new DataAccessLayer();
+                DAL.Open();
+                DataTable posts = DAL.SelectData(cmd);
+                DAL.Close();
+                foreach (DataRow row in posts.Rows)
+                {
+                    outputFile.WriteLine(row["Date"].ToString());
+                    outputFile.WriteLine(row["Body"].ToString());
+                    outputFile.WriteLine("\n\n");
+                }
             }
             Response.Redirect("downloading.aspx?file=" + fileName);
         }
