@@ -26,6 +26,7 @@
                 </tr>
             </table>
         </div>
+        <asp:HiddenField ID="hf" runat="server" />
     </form>
 
 </body>

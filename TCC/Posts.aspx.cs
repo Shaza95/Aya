@@ -113,17 +113,17 @@ namespace TCC
                     if (com["UserName"].ToString() == Session["UserName"].ToString())
                     {
                         //comTxt.Attributes.Add("class", "editable");
-                        //LinkButton lbEdit = new LinkButton();
+                        LinkButton lbEdit = new LinkButton();
                         LinkButton lbDelete = new LinkButton();
-                        //lbEdit.Attributes.Add("class", "commentLnk");
-                        //lbEdit.Text = "edit";
-                        //lbEdit.Command += new CommandEventHandler(edit_Click);
-                        //lbEdit.CommandArgument = com["Id"].ToString();
+                        lbEdit.Attributes.Add("class", "commentLnk");
+                        lbEdit.Text = "edit";
+                        lbEdit.Command += new CommandEventHandler(edit_Click);
+                        lbEdit.CommandArgument = com["Id"].ToString();
                         lbDelete.Attributes.Add("class", "commentLnk");
                         lbDelete.Text = "delete";
                         lbDelete.Command += new CommandEventHandler(delete_Click);
                         lbDelete.CommandArgument = com["Id"].ToString();
-                        //commentDiv.Controls.Add(lbEdit);
+                        commentDiv.Controls.Add(lbEdit);
                         commentDiv.Controls.Add(lbDelete);
                     }
                     newPost.Controls.Add(commentDiv);
@@ -189,19 +189,18 @@ namespace TCC
             DAL.ExecuteCommand(cmd);
             DAL.Close();
         }
-        //protected void edit_Click(object sender, CommandEventArgs e)
-        //{
-        //    int commentId = int.Parse(e.CommandArgument.ToString());
-        //    string cmd = $"update Comments set Body = {""} where Id = {commentId}";
-        //    DataAccessLayer DAL = new DataAccessLayer();
-        //    DAL.Open();
-        //    DAL.ExecuteCommand(cmd);
-        //    DAL.Close();
-        //    Response.Redirect(Request.RawUrl);
-        //    //string name = Request.Form["txtName"];
-        //    //lblName.Text = name;
-
-        //}
+        protected void edit_Click(object sender, CommandEventArgs e)
+        {
+            divEditComment.Visible = true;
+            int commentId = int.Parse(e.CommandArgument.ToString());
+            string cmd = $"select Body from Comments where Id = {commentId}";
+            DataAccessLayer DAL = new DataAccessLayer();
+            DAL.Open();
+            DataTable dt = DAL.SelectData(cmd);
+            taComment.Value = dt.Rows[0][0].ToString();
+            DAL.Close();
+            hf.Value = e.CommandArgument.ToString();
+        }
         protected void delete_Click(object sender, CommandEventArgs e)
         {
             int commentId = int.Parse(e.CommandArgument.ToString());
@@ -215,12 +214,20 @@ namespace TCC
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            string cmd = $"update Comments set Body = '{taComment.Value}' where Id = {hf.Value}";
+            DataAccessLayer DAL = new DataAccessLayer();
+            DAL.Open();
+            DAL.ExecuteCommand(cmd);
+            DAL.Close();
+            Response.Redirect(Request.RawUrl);
+            divEditComment.Visible = false;
+            hf.Value = "";
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-
+            divEditComment.Visible = false;
+            hf.Value = "";
         }
     }
 }

@@ -117,6 +117,8 @@
 #divEditComment {
     position: fixed;
     padding-left: 220px;
-    padding-right: 220px;
+    padding-right: 330px;
     bottom: 0;
+    background-color: bisque;
+    border: 1px solid Thistle;
 }
