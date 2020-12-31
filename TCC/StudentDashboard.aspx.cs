@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.IO;
 
 namespace TCC
 {
@@ -32,6 +33,17 @@ namespace TCC
         protected void btnPosts_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Posts.aspx");
+        }
+
+        protected void btnSavedPosts_Click(object sender, EventArgs e)
+        {
+            string fileName = "MySavedPosts.txt";
+            string filePath = Server.MapPath("Files/" + fileName);
+            using (StreamWriter outputFile = new StreamWriter(filePath))
+            {
+                outputFile.WriteLine("123");
+            }
+            Response.Redirect("downloading.aspx?file=" + fileName);
         }
     }
 }

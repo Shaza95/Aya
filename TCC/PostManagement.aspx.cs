@@ -32,7 +32,7 @@ namespace TCC
                 newPost.Controls.Add(pos);
                 if (!string.IsNullOrWhiteSpace(post["fileName"].ToString()))
                 {
-                    DirectoryInfo di = new DirectoryInfo(Server.MapPath("~/lecture"));
+                    DirectoryInfo di = new DirectoryInfo(Server.MapPath("~/Files"));
                     HyperLink HL = new HyperLink();
                     HL.NavigateUrl = "downloading.aspx?file=" + post["fileName"].ToString();
                     HL.Text = post["fileName"].ToString();
@@ -100,7 +100,7 @@ namespace TCC
             string cmd = $"insert into Posts (Body, Date, fileName, image) values ('{TextArea1.Text}', '{DateTime.Now.Date.ToShortDateString()}', '{((FileUpload1.HasFile)? FileUpload1.FileName.ToString(): " ")}','{((FileUpload2.HasFile) ? FileUpload2.FileName.ToString() : " ")}')";
             if ((FileUpload1.HasFile))
             {
-                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/lecture/") + FileUpload1.FileName.ToString());
+                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Files/") + FileUpload1.FileName.ToString());
             }
             if ((FileUpload2.HasFile))
             {

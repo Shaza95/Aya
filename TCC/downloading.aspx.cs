@@ -14,7 +14,7 @@ namespace Teachers
             string fileName = Request.QueryString["file"].ToString();
             Response.ContentType = "application/octet-stream";
             Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
-            Response.TransmitFile(Server.MapPath("~/lecture/" + fileName));
+            Response.TransmitFile(Server.MapPath("~/Files/" + fileName));
             Response.End();
         }
     }

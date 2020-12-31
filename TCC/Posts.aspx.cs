@@ -32,7 +32,7 @@ namespace TCC
                 newPost.Controls.Add(pos);
                 if (!string.IsNullOrWhiteSpace(post["fileName"].ToString()))
                 {
-                    DirectoryInfo di = new DirectoryInfo(Server.MapPath("~/lecture"));
+                    DirectoryInfo di = new DirectoryInfo(Server.MapPath("~/Files"));
                     HyperLink HL = new HyperLink();
                     HL.NavigateUrl = "downloading.aspx?file=" + post["fileName"].ToString();
                     HL.Text = post["fileName"].ToString();
