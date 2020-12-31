@@ -1,38 +1,38 @@
-﻿.post{
+﻿.post {
     padding: 55px;
     background-color: lavender;
     border: 1px solid Thistle;
 }
 
-.Name{
-    font-size:larger;
+.Name {
+    font-size: larger;
     color: teal;
 }
 
-.postText{
+.postText {
     font-size: large;
     color: black;
 }
 
-.image{
+.image {
     margin: 30px;
     width: 500px;
     height: 300px;
 }
 
-.URL{
+.URL {
     font-size: larger;
     text-decoration: underline;
     color: slateblue;
 }
 
-.commentTB{
+.commentTB {
     height: 45px;
     width: 200px;
     margin: 10px;
 }
 
-.commentBtn{
+.commentBtn {
     height: 50px;
     width: 100px;
     background-color: steelblue;
@@ -49,13 +49,13 @@
     margin-right: 50px;
 }
 
-.commentDiv{
+.commentDiv {
     border: 1px solid lightyellow;
     padding: 10px;
     background-color: lightyellow;
 }
 
-.commentName{
+.commentName {
     font-size: large;
     color: steelblue;
 }
@@ -66,51 +66,54 @@
     float: right;
 }
 
-.commentText{
+.commentText {
     font-size: large;
 }
 
-.otherMessage{
+.otherMessage {
     margin: 5px;
     margin-left: 50%;
     background-color: aliceblue;
     border: 1px solid;
     border-color: aliceblue;
     border-radius: 7px;
-     font-size: large;
-     padding:15px;
-     width: 400px;
-     display: block;
-     max-width: 400px;
-     word-wrap: break-word;
+    font-size: large;
+    padding: 15px;
+    width: 400px;
+    display: block;
+    max-width: 400px;
+    word-wrap: break-word;
 }
 
- .myMessage{
-     margin-right: 50%;
-     background-color: lightgray;
-     border: 1px solid;
+.myMessage {
+    margin-right: 50%;
+    background-color: lightgray;
+    border: 1px solid;
     border-color: lightgray;
     border-radius: 7px;
-     font-size: large;
-     padding:15px; 
-     display: block;
-     max-width: 400px;
-     word-wrap: break-word;
- }
+    font-size: large;
+    padding: 15px;
+    display: block;
+    max-width: 400px;
+    word-wrap: break-word;
+}
 
- .link{
-     text-decoration: none;
-     color: darkcyan;
+.link {
+    text-decoration: none;
+    color: darkcyan;
+}
 
- }
+:-moz-placeholder, :-ms-input-placeholder, ::-moz-placeholder {
+    color: white;
+    font-size: large;
+}
 
-:-moz-placeholder, :-ms-input-placeholder, ::-moz-placeholder{
-     color: white;
-     font-size: large;
- }
+.trans {
+    background-color: #ffffff;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
 
- .trans{
-  background-color: #ffffff;
-  opacity: 0.6;
-  filter: alpha(opacity=60);
- }
+/*.editable {
+    cursor: pointer;
+}*/

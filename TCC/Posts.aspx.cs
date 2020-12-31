@@ -102,21 +102,24 @@ namespace TCC
                     HtmlGenericControl comTxt = new HtmlGenericControl("p");
                     comTxt.Attributes.Add("class", "commentText");
                     comTxt.InnerHtml = com["Body"] + "<br>";
+                    //comTxt.ID = ("p_" + com["Id"].ToString());
                     commentDiv.Controls.Add(nme);
                     commentDiv.Controls.Add(dte);
                     commentDiv.Controls.Add(comTxt);
                     if (com["UserName"].ToString() == Session["UserName"].ToString())
                     {
-                        LinkButton lbEdit = new LinkButton();
+                        //comTxt.Attributes.Add("class", "editable");
+                        //LinkButton lbEdit = new LinkButton();
                         LinkButton lbDelete = new LinkButton();
-                        lbEdit.Attributes.Add("class", "commentLnk");
-                        lbEdit.Text = "edit";
-                        lbEdit.Command += new CommandEventHandler(edit_Click);
+                        //lbEdit.Attributes.Add("class", "commentLnk");
+                        //lbEdit.Text = "edit";
+                        //lbEdit.Command += new CommandEventHandler(edit_Click);
+                        //lbEdit.CommandArgument = com["Id"].ToString();
                         lbDelete.Attributes.Add("class", "commentLnk");
                         lbDelete.Text = "delete";
                         lbDelete.Command += new CommandEventHandler(delete_Click);
                         lbDelete.CommandArgument = com["Id"].ToString();
-                        commentDiv.Controls.Add(lbEdit);
+                        //commentDiv.Controls.Add(lbEdit);
                         commentDiv.Controls.Add(lbDelete);
                     }
                     newPost.Controls.Add(commentDiv);
@@ -182,10 +185,19 @@ namespace TCC
             DAL.ExecuteCommand(cmd);
             DAL.Close();
         }
-        protected void edit_Click(object sender, CommandEventArgs e)
-        {
+        //protected void edit_Click(object sender, CommandEventArgs e)
+        //{
+        //    int commentId = int.Parse(e.CommandArgument.ToString());
+        //    string cmd = $"update Comments set Body = {""} where Id = {commentId}";
+        //    DataAccessLayer DAL = new DataAccessLayer();
+        //    DAL.Open();
+        //    DAL.ExecuteCommand(cmd);
+        //    DAL.Close();
+        //    Response.Redirect(Request.RawUrl);
+        //    //string name = Request.Form["txtName"];
+        //    //lblName.Text = name;
 
-        }
+        //}
         protected void delete_Click(object sender, CommandEventArgs e)
         {
             int commentId = int.Parse(e.CommandArgument.ToString());
