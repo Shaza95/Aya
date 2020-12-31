@@ -57,20 +57,33 @@ namespace TCC
                 tb.MaxLength = 150;
                 tb.ID = "tb" + post["Id"].ToString();
                 newPost.Controls.Add(tb);
+                int postId = (int)post["Id"];
+                int UserId = int.Parse(Session["UserId"].ToString());
                 Button btn = new Button();
                 btn.Attributes.Add("class", "commentBtn");
                 btn.Text = "comment";
                 btn.Command += new CommandEventHandler(comment_Click);
-                Button btnSave = new Button();
-                btnSave.Attributes.Add("class", "commentBtn");
-                btnSave.Text = "save";
-                btnSave.Command += new CommandEventHandler(save_Click);
-                int postId = (int)post["Id"];
-                int UserId = int.Parse(Session["UserId"].ToString());
                 btn.CommandArgument = post["Id"].ToString() + ';' + UserId.ToString();
-                btnSave.CommandArgument = post["Id"].ToString() + ';' + UserId.ToString();
                 newPost.Controls.Add(btn);
-                newPost.Controls.Add(btnSave);
+                bool SavedBefore = DAL.ExecuteScalar($"select count(PostId) from SavedPosts where UserId = {UserId} and PostId = {postId}") > 0;
+                if (!SavedBefore)
+                {
+                    Button btnSave = new Button();
+                    btnSave.Attributes.Add("class", "commentBtn");
+                    btnSave.Text = "save";
+                    btnSave.Command += new CommandEventHandler(save_Click);
+                    btnSave.CommandArgument = post["Id"].ToString() + ';' + UserId.ToString();
+                    newPost.Controls.Add(btnSave);
+                }
+                else
+                {
+                    Button btnUnSave = new Button();
+                    btnUnSave.Attributes.Add("class", "commentBtn");
+                    btnUnSave.Text = "unsave";
+                    btnUnSave.Command += new CommandEventHandler(unsave_Click);
+                    btnUnSave.CommandArgument = post["Id"].ToString() + ';' + UserId.ToString();
+                    newPost.Controls.Add(btnUnSave);
+                }
                 LiteralControl l = new LiteralControl();
                 l.Text = "<br>";
                 newPost.Controls.Add(l);
@@ -114,6 +127,7 @@ namespace TCC
             foreach (HtmlGenericControl post in posts)
                 main.Controls.Add(post);
         }
+
         protected void comment_Click(object sender, CommandEventArgs e)
         {
             string info = e.CommandArgument.ToString();
@@ -144,21 +158,28 @@ namespace TCC
             int SavedPostsNum = DAL.ExecuteScalar($"select count(PostId) from SavedPosts where UserId = {UserId}");
             if (SavedPostsNum < 10)
             {
-                bool SavedBefore = DAL.ExecuteScalar($"select count(PostId) from SavedPosts where UserId = {UserId} and PostId = {postId}") == 0;
-                if (!SavedBefore)
-                {
-                    string cmd = $"insert into SavedPosts (PostId, UserId) values ({postId}, {UserId})";
-                    DAL.ExecuteCommand(cmd);
-                }
-                else
-                {
-                    ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<script language='javascript'>alert('You have saved this post before')</script>");
-                }
+                string cmd = $"insert into SavedPosts (PostId, UserId) values ({postId}, {UserId})";
+                DAL.ExecuteCommand(cmd);
             }
             else
             {
                 ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<script language='javascript'>alert('You cannot save more than 10 posts')</script>");
             }
+            DAL.Close();
+        }
+
+        private void unsave_Click(object sender, CommandEventArgs e)
+        {
+            string info = e.CommandArgument.ToString();
+            string[] arg = new string[2];
+            char[] splitter = { ';' };
+            arg = info.Split(splitter);
+            int postId = int.Parse(arg[0]);
+            int UserId = int.Parse(arg[1]);
+            DataAccessLayer DAL = new DataAccessLayer();
+            DAL.Open();
+            string cmd = $"delete from SavedPosts where PostId = {postId} and UserId = {UserId}";
+            DAL.ExecuteCommand(cmd);
             DAL.Close();
         }
         protected void edit_Click(object sender, CommandEventArgs e)
