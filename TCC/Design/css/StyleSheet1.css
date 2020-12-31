@@ -114,6 +114,9 @@
     filter: alpha(opacity=60);
 }
 
-/*.editable {
-    cursor: pointer;
-}*/
+#divEditComment {
+    position: fixed;
+    padding-left: 220px;
+    padding-right: 220px;
+    bottom: 0;
+}

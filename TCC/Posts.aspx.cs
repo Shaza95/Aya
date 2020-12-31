@@ -212,5 +212,15 @@ namespace TCC
             DAL.Close();
             Response.Redirect(Request.RawUrl);
         }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

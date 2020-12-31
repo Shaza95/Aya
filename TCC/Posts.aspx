@@ -6,33 +6,25 @@
 <head runat="server">
     <title></title>
     <link href="Design\css\StyleSheet1.css" rel="stylesheet" type="text/css" />
-    <%--<script type="text/javascript" src="Design/js/jquery.min.js">
-    </script>
-    <script type="text/javascript">
-        $(function () {
-            $(".editable").each(function () {
-                var label = $(this);
-                label.after("<input type='text' style='display:none' />");
-                var textbox = $(this).next();
-                var id = this.id;
-                textbox.val(label.html());
-                label.click(function () {
-                    $(this).hide();
-                    $(this).next().show();
-                });
-                textbox.focusout(function () {
-                    $(this).hide();
-                    $(this).prev.html($this.val());
-                    $(this).prev().show();
-                });
-            }
-            );
-        });
-    </script>--%>
 </head>
 <body style="background-color: darkslategray; padding-left: 220px; padding-right: 220px;">
     <form id="form1" runat="server">
         <div id="main" runat="server">
+        </div>
+        <div id="divEditComment" runat="server" visible="false">
+            <table>
+                <tr>
+                    <td>
+                        <textarea id="taComment" runat="server"></textarea>
+                    </td>
+                    <td>
+                        <asp:Button id="btnUpdate" runat="server" Text="Update" onclick="btnUpdate_Click"></asp:Button>
+                    </td>
+                    <td>
+                        <asp:Button id="btnCancel" runat="server" Text="Cancel" onclick="btnCancel_Click"></asp:Button>
+                    </td>
+                </tr>
+            </table>
         </div>
     </form>
 
